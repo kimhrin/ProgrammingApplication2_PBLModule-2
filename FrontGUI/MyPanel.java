@@ -17,22 +17,26 @@ public class MyPanel extends JPanel
     protected JPanel buttonPanel;
     protected JPanel outputPanel;
 
-    protected JLabel myLabel_BorrowerName, myLabel_PhoneNumber, myLabel_BookTitle, myLabel_BookAuthor, myLabel_BookID;
-    protected JTextField myTextField_BorrowerName, myTextField_PhoneNumber, myTextField_BookTitle, myTextField_BookAuthor, myTextField_BookID;
+    protected JLabel myLabel_BorrowerName, myLabel_PhoneNumber,
+                     myLabel_BookTitle, myLabel_BookAuthor, myLabel_BookID;
+    protected JTextField myTextField_BorrowerName, myTextField_PhoneNumber,
+                         myTextField_BookTitle, myTextField_BookAuthor, myTextField_BookID;
 
     protected JButton myButton_Run, myButton_Clear;
     protected JTextArea myTextArea;
     private LibraryApplication app;
 
     protected String[] menu1 = {"이용자 등록", "책 등록"};
-    protected String[] menu2 = {"대출가능 목록", "대출중 목록"};
+    // 🔹 2번째 콤보박스에 '현재 대출 내역 목록', '이용자 목록' 포함
+    protected String[] menu2 = {"이용자 목록", "대출 가능 책 목록", "대출 중 책 목록", "현재 대출 내역 목록"};
     protected String[] menu3 = {"책 대출", "책 반납"};
 
     protected JComboBox myComboBox1;
     protected JComboBox myComboBox2;
     protected JComboBox myComboBox3;
 
-    protected int index = -1; // 선택된 UC 번호를 저장할 변수.
+    // UC1~6 + UC7(현재 대출 내역) + UC8(이용자 목록)
+    protected int index = -1;
 
     /**
      * MyPanel 클래스의 객체 생성자
@@ -47,7 +51,7 @@ public class MyPanel extends JPanel
         // ===== 상단 타이틀 영역 =====
         titlePanel = new JPanel();
         titlePanel.setLayout(new BorderLayout());
-        titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5)); // 상, 좌, 하, 우
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
         titlePanel.setBackground(Color.LIGHT_GRAY);
 
         ImageIcon book = new ImageIcon("book.png");
@@ -79,8 +83,7 @@ public class MyPanel extends JPanel
 
         // ---- 입력 패널 ----
         JPanel inputPanel = new JPanel();
-        
-        inputPanel.setLayout(new GridLayout(5, 2, 5, 5)); // 행, 열, 가로 간격, 세로 간격
+        inputPanel.setLayout(new GridLayout(5, 2, 5, 5)); // 행 5개
         inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         myLabel_BorrowerName = new JLabel("이용자 이름");
@@ -152,7 +155,7 @@ public class MyPanel extends JPanel
      * @param  tf : JTextField, enableField : boolean
      */
     private void setTextFieldEnable(JTextField tf, boolean enableField){
-        tf.setEnabled(enableField); // enableField가 false일 시, 컴포넌트가 완전히 꺼짐.
+        tf.setEnabled(enableField);
         if(enableField){
             tf.setBackground(Color.WHITE);
         }else{
@@ -164,32 +167,37 @@ public class MyPanel extends JPanel
      * 현재 선택된 UseCase에 따라 필요한 TextField만 활성화하고, 나머지는 비활성화하는 메소드.
      */
     public void setInputField(){
-        // UC가 바뀔 때마다 새로 세팅하기 위해 모두 비활성화.
+        // UC가 바뀔 때마다 새로 세팅하기 위해 모두 비활성화
         setTextFieldEnable(myTextField_BorrowerName, false);
-        setTextFieldEnable(myTextField_PhoneNumber,  false);
-        setTextFieldEnable(myTextField_BookTitle,    false);
-        setTextFieldEnable(myTextField_BookAuthor,   false);
-        setTextFieldEnable(myTextField_BookID,       false);
+        setTextFieldEnable(myTextField_PhoneNumber, false);
+        setTextFieldEnable(myTextField_BookTitle, false);
+        setTextFieldEnable(myTextField_BookAuthor, false);
+        setTextFieldEnable(myTextField_BookID, false);
 
-        // UC1(이용자 등록) : 이름 + 전화번호 활성화
+        // UC1(이용자 등록) : 이름 + 전화번호
         if(index == 1){
             setTextFieldEnable(myTextField_BorrowerName, true);
-            setTextFieldEnable(myTextField_PhoneNumber,  true);
+            setTextFieldEnable(myTextField_PhoneNumber, true);
         }
-        // UC2(책 등록) : 책 정보만 활성화
+        // UC2(책 등록) : 책 정보
         else if(index == 2){
-            setTextFieldEnable(myTextField_BookTitle,  true);
+            setTextFieldEnable(myTextField_BookTitle, true);
             setTextFieldEnable(myTextField_BookAuthor, true);
-            setTextFieldEnable(myTextField_BookID,     true);
+            setTextFieldEnable(myTextField_BookID, true);
         }
-        // UC5(책 대출) : 이용자 이름 + 책ID
+        // UC5(책 대출) : 이용자 이름 + 책 ID
         else if(index == 5){
             setTextFieldEnable(myTextField_BorrowerName, true);
-            setTextFieldEnable(myTextField_BookID,       true);
+            setTextFieldEnable(myTextField_BookID, true);
         }
-        // UC6(책 반납) : 책ID만
+        // UC6(책 반납) : 책 ID
         else if(index == 6){
             setTextFieldEnable(myTextField_BookID, true);
         }
+        // UC7(현재 대출 내역 목록) : 전화번호만 활성화
+        else if(index == 7){
+            setTextFieldEnable(myTextField_PhoneNumber, true);
+        }
+        // UC8(이용자 목록) : 입력 없이 전체 목록만 출력 → 기본 비활성 상태 유지
     }
 }

@@ -22,7 +22,7 @@ public class MyListener implements ActionListener
         this.panel = panel;
         this.app = app;
     }
-    
+
     /**
      * ActionEvent에 대해 각 UseCase별로 맞는 동작을 처리하도록 하는 메소드.
      *
@@ -34,27 +34,37 @@ public class MyListener implements ActionListener
         if(obj.equals(panel.myComboBox1)){
             JComboBox cb = (JComboBox)e.getSource();
             int selected = cb.getSelectedIndex();
-            panel.index = 1 + selected; // UC1, UC2
+            panel.index = 1 + selected;
             panel.setInputField();
         }
         else if(obj.equals(panel.myComboBox2)){
             JComboBox cb = (JComboBox)e.getSource();
             int selected = cb.getSelectedIndex();
-            panel.index = 3 + selected; // UC3, UC4
+
+            // menu2 = {"이용자 목록", "대출 가능 책 목록", "대출 중 책 목록", "현재 대출 내역 목록"}
+
+            if(selected == 0){
+                panel.index = 8;     // UC8 : 이용자 목록
+            }else if(selected == 1){
+                panel.index = 3;     // UC3 : 대출 가능 책 목록
+            }else if(selected == 2){
+                panel.index = 4;     // UC4 : 대출 중 책 목록
+            }else if(selected == 3){
+                panel.index = 7;     // UC7 : 현재 대출 내역 목록 (전화번호 기반)
+            }
+
             panel.setInputField();
         }
         else if(obj.equals(panel.myComboBox3)){
             JComboBox cb = (JComboBox)e.getSource();
             int selected = cb.getSelectedIndex();
-            panel.index = 5 + selected; // UC5, UC6
+            panel.index = 5 + selected;
             panel.setInputField();
         }
         else if(obj.equals(panel.myButton_Run)){
             String result = "";
 
             if(panel.index == 1){
-                // 현재는 이름만 LibraryApplication에 전달.
-                // 전화번호는 새로운 Core랑 연결할 때 LibraryApplication에 메소드 오버로드해서 함께 넘기면 됨.
                 result = app.registerOneBorrower(panel.myTextField_BorrowerName.getText());
             }
             else if(panel.index == 2){
@@ -79,8 +89,18 @@ public class MyListener implements ActionListener
             else if(panel.index == 6){
                 result = app.returnOneBook(panel.myTextField_BookID.getText());
             }
+            // UC7(현재 대출 내역 목록) → 이후 백엔드 구현 시:
+            // else if(panel.index == 7){
+            //     result = app.displayCurrentLoanHistory(panel.myTextField_PhoneNumber.getText());
+            // }
+            // UC8(이용자 목록) → 이후 백엔드 구현 시:
+            // else if(panel.index == 8){
+            //     result = app.displayBorrowerList();
+            // }
 
-            panel.myTextArea.append(result + "\n");
+            if(!result.equals("")){
+                panel.myTextArea.append(result + "\n");
+            }
         }
         else if(obj.equals(panel.myButton_Clear)){
             panel.myTextField_BorrowerName.setText("");
