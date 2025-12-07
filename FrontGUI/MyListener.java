@@ -32,35 +32,37 @@ public class MyListener implements ActionListener
         Object obj = e.getSource();
 
         if(obj.equals(panel.myComboBox1)){
-            JComboBox cb = (JComboBox)e.getSource(); // Object 타입의 e.getSource를 콤보박스에 넣기 위해 캐스팅 진행.
+            JComboBox cb = (JComboBox)e.getSource();
             int selected = cb.getSelectedIndex();
-            panel.index = 1 + selected; //UC 번호를 index로 사용하기 위한 작업.
+            panel.index = 1 + selected; // UC1, UC2
             panel.setInputField();
         }
         else if(obj.equals(panel.myComboBox2)){
             JComboBox cb = (JComboBox)e.getSource();
             int selected = cb.getSelectedIndex();
-            panel.index = 3 + selected;
+            panel.index = 3 + selected; // UC3, UC4
             panel.setInputField();
         }
         else if(obj.equals(panel.myComboBox3)){
             JComboBox cb = (JComboBox)e.getSource();
             int selected = cb.getSelectedIndex();
-            panel.index = 5 + selected;
+            panel.index = 5 + selected; // UC5, UC6
             panel.setInputField();
         }
         else if(obj.equals(panel.myButton_Run)){
             String result = "";
 
             if(panel.index == 1){
-                result = app.registerOneBorrower(panel.myTextField_BorrowerName.getText()); // 텍스트 필드에 있는 문자열을 가져 와서 이용자 등록을 진행.
+                // 현재는 이름만 LibraryApplication에 전달.
+                // 전화번호는 새로운 Core랑 연결할 때 LibraryApplication에 메소드 오버로드해서 함께 넘기면 됨.
+                result = app.registerOneBorrower(panel.myTextField_BorrowerName.getText());
             }
             else if(panel.index == 2){
                 result = app.registerOneBook(
                     panel.myTextField_BookTitle.getText(),
                     panel.myTextField_BookAuthor.getText(),
                     panel.myTextField_BookID.getText()
-                ); // 텍스트 필드에 있는 문자열을 가져 와서 책 등록을 진행.
+                );
             }
             else if(panel.index == 3){
                 result = app.displayBookForLoan();
@@ -72,16 +74,17 @@ public class MyListener implements ActionListener
                 result = app.loanOneBook(
                     panel.myTextField_BorrowerName.getText(),
                     panel.myTextField_BookID.getText()
-                ); //텍스트 필드에 있는 문자열 가져 와서 대출 작업 진행.
+                );
             }
             else if(panel.index == 6){
-                result = app.returnOneBook(panel.myTextField_BookID.getText()); // 택스트 필드에 있는 문자열 가져 와서 반납 작업 진행.
+                result = app.returnOneBook(panel.myTextField_BookID.getText());
             }
 
             panel.myTextArea.append(result + "\n");
         }
         else if(obj.equals(panel.myButton_Clear)){
             panel.myTextField_BorrowerName.setText("");
+            panel.myTextField_PhoneNumber.setText("");
             panel.myTextField_BookTitle.setText("");
             panel.myTextField_BookAuthor.setText("");
             panel.myTextField_BookID.setText("");
