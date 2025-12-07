@@ -17,11 +17,8 @@ public class MyPanel extends JPanel
     protected JPanel buttonPanel;
     protected JPanel outputPanel;
 
-    // 🔹 전화번호용 Label / TextField 추가
-    protected JLabel myLabel_BorrowerName, myLabel_PhoneNumber,
-                     myLabel_BookTitle, myLabel_BookAuthor, myLabel_BookID;
-    protected JTextField myTextField_BorrowerName, myTextField_PhoneNumber,
-                         myTextField_BookTitle, myTextField_BookAuthor, myTextField_BookID;
+    protected JLabel myLabel_BorrowerName, myLabel_PhoneNumber, myLabel_BookTitle, myLabel_BookAuthor, myLabel_BookID;
+    protected JTextField myTextField_BorrowerName, myTextField_PhoneNumber, myTextField_BookTitle, myTextField_BookAuthor, myTextField_BookID;
 
     protected JButton myButton_Run, myButton_Clear;
     protected JTextArea myTextArea;
@@ -35,7 +32,7 @@ public class MyPanel extends JPanel
     protected JComboBox myComboBox2;
     protected JComboBox myComboBox3;
 
-    protected int index = -1; // UC1~6 중, 선택된 UC 번호를 저장할 변수.
+    protected int index = -1; // 선택된 UC 번호를 저장할 변수.
 
     /**
      * MyPanel 클래스의 객체 생성자
