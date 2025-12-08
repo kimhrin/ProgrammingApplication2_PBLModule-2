@@ -58,7 +58,7 @@ public class LibraryApplication
             return bookDB.saveBook(book);
         }
         else{
-            return "책 등록 실패 - 고유번호 " + bookID + "는 이미 등록된 책입니다.\n";
+            return "책 등록 실패 - 고유번호 " + bookID + "는 이미 등록된 책입니다.";
         }
     }
 
@@ -78,7 +78,7 @@ public class LibraryApplication
             }
         }
         if(result.equals("===== 대출 가능 책 목록 =====\n")){
-            result = "대출 가능한 책의 정보가 없습니다.\n";
+            result = "대출 가능한 책의 정보가 없습니다.";
         }
         return result;
     }
@@ -99,7 +99,7 @@ public class LibraryApplication
             }
         }
         if(result.equals("===== 대출 중 책 목록 =====\n")){
-            result = "대출 중인 책의 정보가 없습니다.\n";
+            result = "대출 중인 책의 정보가 없습니다.";
         }
         return result;
     }
@@ -113,20 +113,20 @@ public class LibraryApplication
     public String loanOneBook(int bookID, int phoneNumber){
         Book bookResult = bookDB.searchBook(bookID);
         if(bookResult == null){
-            return "대출 실패 - 고유번호 " + bookID + " 는 등록되지 않은 책입니다.\n";
+            return "대출 실패 - 고유번호 " + bookID + " 는 등록되지 않은 책입니다.";
         }
 
         Borrower borrowerResult = borrowerDB.searchBorrower(phoneNumber);
         if(borrowerResult == null){
-            return "대출 실패 - 전화번호 " + phoneNumber + " 는 등록되지 않은 이용자입니다.\n";
+            return "대출 실패 - 전화번호 " + phoneNumber + " 는 등록되지 않은 이용자입니다.";
         }
 
         if(borrowerResult.getLoanCount() >=10){
-            return "대출 실패 - 대출 가능 권수(최대 10권)를 초과했습니다.\n";
+            return "대출 실패 - 대출 가능 권수(최대 10권)를 초과했습니다.";
         }
 
         if(bookResult.searchLoan() != null){
-            return "대출 실패 - 고유번호 " + bookID + " 인 책은 이미 대출 중입니다.\n";
+            return "대출 실패 - 고유번호 " + bookID + " 인 책은 이미 대출 중입니다.";
         }
         Loan loan = new Loan(bookResult, borrowerResult);
         loanDB.saveLoan(loan);
@@ -143,23 +143,23 @@ public class LibraryApplication
     public String returnOneBook(int bookID, int phoneNumber){
         Book bookResult = bookDB.searchBook(bookID);
         if(bookResult == null){
-            return "반납 실패 - 고유번호 " + bookID + " 는 등록되지 않은 책입니다.\n";
+            return "반납 실패 - 고유번호 " + bookID + " 는 등록되지 않은 책입니다.";
         }
 
         Borrower borrowerResult = borrowerDB.searchBorrower(phoneNumber);
         if(borrowerResult == null){
-            return "반납 실패 - 전화번호 " + phoneNumber + " 는 등록되지 않은 이용자입니다.\n";
+            return "반납 실패 - 전화번호 " + phoneNumber + " 는 등록되지 않은 이용자입니다.";
         }
 
         Loan loanFromBook = bookResult.searchLoan();
         Loan loanFromBorrower = borrowerResult.searchLoan(bookID);
 
         if(loanFromBorrower == null || loanFromBook == null){
-            return "반납 실패 - 대출 정보가 존재하지 않거나 일치하지 않습니다.\n";
+            return "반납 실패 - 대출 정보가 존재하지 않거나 일치하지 않습니다.";
         }
 
         if(loanFromBorrower != loanFromBook){
-            return "반납 실패 - 대출 정보가 일치하지 않습니다.\n";
+            return "반납 실패 - 대출 정보가 일치하지 않습니다.";
         }
 
         borrowerResult.disconnect(loanFromBorrower);
@@ -192,7 +192,7 @@ public class LibraryApplication
             }
         }
         if (result.equals("===== " + phoneNumber + "의 현재 대출 내역 목록 =====\n")){
-            return phoneNumber + "의 대출 내역이 없습니다.\n";
+            return phoneNumber + "의 대출 내역이 없습니다.";
         }
         return result;
     }
@@ -211,7 +211,7 @@ public class LibraryApplication
             result += borrower.display() + "\n";
         }
         if(result.equals("===== 이용자 목록 =====\n")){
-            return "등록된 이용자가 없습니다.\n";
+            return "등록된 이용자가 없습니다.";
         }
         return result;
     }
