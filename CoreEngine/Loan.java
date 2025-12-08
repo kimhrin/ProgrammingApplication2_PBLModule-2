@@ -70,6 +70,6 @@ public class Loan
      * @return    대출 정보(책ID, 대출일, 반납예정일) 출력
      */
     public String display(){
-        return "책 ID: " + LoanBook.getBookID() + ", 대출일: " + loanDate + ", 반납예정일: " + returnDate;
+        return "책 등록번호: " + LoanBook.getBookID() + "  |  대출일: " + loanDate + "  |  반납예정일: " + returnDate;
     }
 }

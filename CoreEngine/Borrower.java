@@ -99,6 +99,6 @@ public class Borrower
      * @return    이용자의 정보(이름, 전화번호) 출력
      */
     public String display(){
-        return "이용자 이름: " + name + ", 전화번호: " + phoneNumber;
+        return "이용자 이름: " + name + " |  전화번호: " + phoneNumber;
     }
 }

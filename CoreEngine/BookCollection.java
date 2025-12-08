@@ -43,7 +43,7 @@ public class BookCollection
      */
     public String saveBook(Book book){
         bookCollection.add(book);
-        return "책 등록 완료 - 제목: " + book.getBookTitle() + ", 고유번호: " + book.getBookID();
+        return "[책 등록 완료]\n제목: " + book.getBookTitle() + "  |  등록번호: " + book.getBookID() + "\n";
     }
 
     /**

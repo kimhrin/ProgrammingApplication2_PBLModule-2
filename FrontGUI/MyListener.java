@@ -70,7 +70,7 @@ public class MyListener implements ActionListener
                     String phoneText = panel.myTextField_PhoneNumber.getText();
 
                     if(name.equals("") || phoneText.equals("")){
-                        result = "이용자 이름과 전화번호를 모두 입력해주세요.";
+                        result = "** 이용자 이름과 전화번호를 모두 입력해주세요. **\n";
                     }else{
                         int phoneNumber = Integer.parseInt(phoneText);
                         result = app.registerOneBorrower(name, phoneNumber);
@@ -82,7 +82,7 @@ public class MyListener implements ActionListener
                     String bookIDText = panel.myTextField_BookID.getText();
 
                     if(title.equals("") || author.equals("") || bookIDText.equals("")){
-                        result = "책 제목, 저자, 등록번호를 모두 입력해주세요.";
+                        result = "** 책 제목, 저자, 등록번호를 모두 입력해주세요. **\n";
                     }else{
                         int bookID = Integer.parseInt(bookIDText);
                         result = app.registerOneBook(title, author, bookID);
@@ -99,7 +99,7 @@ public class MyListener implements ActionListener
                     String bookIDText = panel.myTextField_BookID.getText();
 
                     if(phoneText.equals("") || bookIDText.equals("")){
-                        result = "전화번호와 책 등록번호를 모두 입력해주세요.";
+                        result = "** 전화번호와 책 등록번호를 모두 입력해주세요. **\n";
                     }else{
                         int phoneNumber = Integer.parseInt(phoneText);
                         int bookID = Integer.parseInt(bookIDText);
@@ -111,7 +111,7 @@ public class MyListener implements ActionListener
                     String bookIDText = panel.myTextField_BookID.getText();
 
                     if(phoneText.equals("") || bookIDText.equals("")){
-                        result = "전화번호와 책 등록번호를 모두 입력해주세요.";
+                        result = "** 전화번호와 책 등록번호를 모두 입력해주세요. **\n";
                     }else{
                         int phoneNumber = Integer.parseInt(phoneText);
                         int bookID = Integer.parseInt(bookIDText);
@@ -122,7 +122,7 @@ public class MyListener implements ActionListener
                     String phoneText = panel.myTextField_PhoneNumber.getText();
 
                     if(phoneText.equals("")){
-                        result = "전화번호를 입력해주세요.";
+                        result = "** 전화번호를 입력해주세요. **\n";
                     }else{
                         int phoneNumber = Integer.parseInt(phoneText);
                         result = app.displayLoansForBorrower(phoneNumber);
@@ -133,7 +133,7 @@ public class MyListener implements ActionListener
                 }
             }
             catch(NumberFormatException ex){
-                result = "전화번호와 책 등록번호는 숫자로만 입력해주세요.";
+                result = "** 전화번호와 책 등록번호는 숫자로만 입력해주세요. **\n";
             }
 
             if(!result.equals("")){

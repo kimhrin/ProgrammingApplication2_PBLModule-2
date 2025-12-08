@@ -46,7 +46,7 @@ public class BorrowerCollection
      */
     public String saveBorrower(Borrower borrower){
         borrowerCollection.add(borrower);
-        return "이용자 등록 완료 - 이름: " + borrower.getName() + ", 전화번호: " + borrower.getPhoneNumber();
+        return "[이용자 등록 완료]\n이름: " + borrower.getName() + "  |  전화번호: " + borrower.getPhoneNumber() + "\n";
     }
 
     /**

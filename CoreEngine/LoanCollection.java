@@ -29,7 +29,7 @@ public class LoanCollection
      */
     public String saveLoan(Loan loan){
         loanCollection.add(loan);
-        return "대출 등록 완료 - 이용자: " + loan.getBorrower().getName() + ", 책 ID: " + loan.getBook().getBookID();
+        return "[대출 등록 완료]\n이용자: " + loan.getBorrower().getName() + "  |  책 ID: " + loan.getBook().getBookID();
     }
 
     /**

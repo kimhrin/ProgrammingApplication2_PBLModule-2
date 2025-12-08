@@ -35,7 +35,7 @@ public class Book
      * @return    책의 정보(제목, 저자, 고유번호) 출력
      */
     public String display(){
-        return "책의 제목 : " + title + ", 책의 저자 : " + author + ", 책의 고유번호 : " + bookID;
+        return "책 제목 : " + title + "  |  책 저자 : " + author + "  |  책 등록번호 : " + bookID;
     }
 
     /**
