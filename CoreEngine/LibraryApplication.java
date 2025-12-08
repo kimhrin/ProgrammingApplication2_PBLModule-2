@@ -41,7 +41,7 @@ public class LibraryApplication
             return borrowerDB.saveBorrower(borrower);
         }
         else{
-            return "이용자 등록 실패 - 전화번호 " + phoneNumber + " 는 이미 등록된 이용자입니다.\n";
+            return "이용자 등록 실패 - 전화번호 " + phoneNumber + " 는 이미 등록된 이용자입니다.";
         }
     }
 
@@ -131,7 +131,7 @@ public class LibraryApplication
         Loan loan = new Loan(bookResult, borrowerResult);
         loanDB.saveLoan(loan);
 
-        return "대출 완료 - 이용자: " + borrowerResult.getName() + ", 책 ID: " + bookID + "\n";
+        return "대출 완료 - 이용자: " + borrowerResult.getName() + ", 책 ID: " + bookID;
     }
 
     /**
@@ -170,7 +170,7 @@ public class LibraryApplication
         loanDB.deleteLoan(loanFromBorrower);
         loanDB.deleteLoan(loanFromBook);
 
-        return "반납 완료 - 이용자: " + borrowerResult.getName() + ", 책 ID: " + bookID + "\n";
+        return "반납 완료 - 이용자: " + borrowerResult.getName() + ", 책 ID: " + bookID;
     }
 
     /**
