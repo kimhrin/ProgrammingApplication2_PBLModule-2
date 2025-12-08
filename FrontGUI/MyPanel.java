@@ -27,7 +27,7 @@ public class MyPanel extends JPanel
     private LibraryApplication app;
 
     protected String[] menu1 = {"이용자 등록", "책 등록"};
-    // 🔹 2번째 콤보박스에 '현재 대출 내역 목록', '이용자 목록' 포함
+    // 2번째 콤보박스 : 이용자/책/대출 현황 조회
     protected String[] menu2 = {"이용자 목록", "대출 가능 책 목록", "대출 중 책 목록", "현재 대출 내역 목록"};
     protected String[] menu3 = {"책 대출", "책 반납"};
 
@@ -185,19 +185,20 @@ public class MyPanel extends JPanel
             setTextFieldEnable(myTextField_BookAuthor, true);
             setTextFieldEnable(myTextField_BookID, true);
         }
-        // UC5(책 대출) : 이용자 이름 + 책 ID
+        // UC5(책 대출) : 전화번호 + 책 ID
         else if(index == 5){
-            setTextFieldEnable(myTextField_BorrowerName, true);
+            setTextFieldEnable(myTextField_PhoneNumber, true);
             setTextFieldEnable(myTextField_BookID, true);
         }
-        // UC6(책 반납) : 책 ID
+        // UC6(책 반납) : 전화번호 + 책 ID
         else if(index == 6){
+            setTextFieldEnable(myTextField_PhoneNumber, true);
             setTextFieldEnable(myTextField_BookID, true);
         }
         // UC7(현재 대출 내역 목록) : 전화번호만 활성화
         else if(index == 7){
             setTextFieldEnable(myTextField_PhoneNumber, true);
         }
-        // UC8(이용자 목록) : 입력 없이 전체 목록만 출력 → 기본 비활성 상태 유지
+        // UC3, UC4, UC8 : 입력 없이 전체 목록만 출력 → 기본 비활성 상태 유지
     }
 }
